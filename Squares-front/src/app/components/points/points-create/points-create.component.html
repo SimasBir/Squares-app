@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <form>
+    <div class="input-group input-group-sm my-2">
+      <span class="input-group-text">X and Y points</span>
+      <input type="number" name="xCoord" [(ngModel)]="xCoord" class="form-control">
+      <input type="number" name="yCoord" [(ngModel)]="yCoord" class="form-control">
+      <button (click)="addPoint()" type="button" class="btn btn-outline-primary btn-sm">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,50 @@
+<div class="container-fluid my-2">
+    <form>
+        <div class="input-group mb-3">
+            <input name="List name" placeholder="List name" [(ngModel)]="listName" type="text"
+                class="form-control form-control-sm" />
+            <button (click)="saveList()" type="button" class="btn btn-outline-primary btn-sm ">
+                Save list
+            </button>
+            <button (click)="exportList()" type="button" class="btn btn-outline-warning btn-sm">
+                Export list
+            </button>
+            <button (click)="clearList()" type="button" class="btn btn-outline-danger btn-sm">
+                Clear list
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid">
+    <div class="col-12 input-group">
+        <div class="col-11 input-group-addon">
+            <ngb-pagination [collectionSize]="pointsList.length" #numPages [pageSize]="itemsPerPage"
+                [(page)]="currentPage" (pageChange)="onPageChange(currentPage)"></ngb-pagination>
+        </div>
+        <div class="col-1 input-group-addon">
+            <input class="input-sm text-left" type="number" [min]="5" [max]="pointsList.length" step="1"
+                [(ngModel)]="itemsPerPage" (onClick)="changePagesize(pageSize)">
+        </div>
+    </div>
+    <table class="table table-bordered table-sm" *ngIf="pointsList">
+        <thead>
+            <tr>
+                <th scope="col">X</th>
+                <th scope="col">Y</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let point of pointsList | slice: pageSize | slice: 0:itemsPerPage">
+                <td>{{point.xCoord}}</td>
+                <td>{{point.yCoord}}</td>
+                <td>
+                    <button class="btn btn-outline-danger btn-sm"
+                        (click)="removePoint(point.xCoord,point.yCoord)">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pre><span class="float-md-left">Page: {{ currentPage }} / {{numPages.pageCount}} </span><span class="float-md-right">Found items: {{ pointsList.length }}</span></pre>
+</div>
