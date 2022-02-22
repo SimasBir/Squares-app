@@ -40,8 +40,10 @@ namespace Squares_server.Services
 
         public async Task<int> CreateNamedListAsync(CreateNamedList createNamedLists)
         {
-            var checkName = await _context.NamedLists.Where(i => i.Name == createNamedLists.Name).FirstOrDefaultAsync();
+            // Shorten linq
+            var checkName = await _context.NamedLists.FirstOrDefaultAsync(i => i.Name == createNamedLists.Name);
             NamedList namedList = _mapper.Map<NamedList>(createNamedLists);
+            // Optional maybe introduce repositories
             if (checkName != null) // overwrite existing one 
             {
                 await DeleteNamedListAsync(checkName.Id);
@@ -62,18 +64,5 @@ namespace Squares_server.Services
             await _context.SaveChangesAsync();
             return id;
         }
-
-        //public async Task<int> UpdateNamedListAsync(int id, CreateNamedList createNamedLists)
-        //{
-        //    var namedList = await _context.NamedLists.Where(i => i.Id == id).FirstOrDefaultAsync();
-        //    if (namedList == null)
-        //    {
-        //        throw new ArgumentException($"NamedList id {id} not found");
-        //    }
-        //    namedList.Name = createNamedLists.Name;
-        //    _context.Update(namedList);
-        //    await _context.SaveChangesAsync();
-        //    return namedList.Id;
-        //}
     }
 }

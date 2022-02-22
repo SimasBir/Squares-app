@@ -28,13 +28,14 @@ namespace Squares_server.Controllers
             return Ok(namedLists);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult> GetNamedList(int id)
+        //Pagal RESTFULL "GetPointsByList(int id)" tinkamiau cia:
+        [HttpGet("{id}/point")]
+        public async Task<ActionResult> GetPointsByList([FromRoute] int id)
         {
             try
             {
-                var pointlist = await _pointService.GetPointsByListAsync(id);
-                return Ok(pointlist);
+                var point = await _pointService.GetPointsByListAsync(id);
+                return Ok(point);
             }
             catch (ArgumentException ex)
             {
@@ -71,13 +72,12 @@ namespace Squares_server.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateNamedList(int id, List<CreatePointModel> pointList) 
+        public async Task<IActionResult> UpdateNamedList(int id, List<CreatePointModel> pointList)
         {
             try
             {
                 await _pointService.CreatePointListAsync(id, pointList);
                 return Created("NamedList has been updated. Id: ", id);
-
             }
             catch (ArgumentException ex)
             {

@@ -57,7 +57,9 @@ export class PointsListComponent implements OnInit {
     if (this.listName != "") {
       saveAs(blob, `${this.listName}.txt`);
     }
-    saveAs(blob, `PointList.txt`);
+    else{
+      saveAs(blob, `PointList.txt`);
+    }
   }
 
   // public squareCount(){

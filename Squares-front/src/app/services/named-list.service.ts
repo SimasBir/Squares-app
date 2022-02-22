@@ -16,8 +16,8 @@ export class NamedListService {
     return this.httpClient.get<NamedList[]>('https://localhost:44368/namedList');
   }
 
-  public getByList(id: number):Observable<NamedList[]> {
-    return this.httpClient.get<NamedList[]>(`https://localhost:44368/namedList/${id})`);
+  public getByList(id: number):Observable<Point[]> {
+    return this.httpClient.get<Point[]>(`https://localhost:44368/namedList/${id}/point`);
   }
 
   public create(listName: CreateNamedList): Observable<number> {

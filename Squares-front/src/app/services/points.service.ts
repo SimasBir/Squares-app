@@ -14,9 +14,9 @@ export class PointsService {
     return this.httpClient.get<Point[]>('https://localhost:44368/point');
   }
 
-  public getByList(id: number):Observable<Point[]> {
-    return this.httpClient.get<Point[]>(`https://localhost:44368/point/${id}`);
-  }
+  // public getByList(id: number):Observable<Point[]> {
+  //   return this.httpClient.get<Point[]>(`https://localhost:44368/point/${id}`);
+  // }
 
   public create(pointlist: Point[]): Observable<number> {
     return this.httpClient.post<number>('https://localhost:44368/point', pointlist);

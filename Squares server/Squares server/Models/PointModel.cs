@@ -9,9 +9,7 @@ namespace Squares_server.Models
 {
     public class PointModel : Entity
     {
-        [Range(-5000, 5000)]
         public int xCoord { get; set; }
-        [Range(-5000, 5000)]
         public int yCoord { get; set; }
         public List<NamedListPoint> NamedListPoints { get; set; }
     }

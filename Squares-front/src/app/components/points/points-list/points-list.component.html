@@ -16,7 +16,7 @@
     </form>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="pointsList.length>0">
     <div class="col-12 input-group">
         <div class="col-11 input-group-addon">
             <ngb-pagination [collectionSize]="pointsList.length" #numPages [pageSize]="itemsPerPage"
@@ -27,7 +27,7 @@
                 [(ngModel)]="itemsPerPage" (onClick)="changePagesize(pageSize)">
         </div>
     </div>
-    <table class="table table-bordered table-sm" *ngIf="pointsList">
+    <table class="table table-bordered table-sm" >
         <thead>
             <tr>
                 <th scope="col">X</th>

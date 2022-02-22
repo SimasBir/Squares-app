@@ -27,11 +27,12 @@ export class StateService {
   }
   
   public loadByList(id: number) {
-    this.pointsService.getByList(id).subscribe((points)=>{
+    this.namedListService.getByList(id).subscribe((points)=>{
       this.points = points;
       this.points$.next(this.points);
     })
   }  
+
   public deleteList(listId: number) {
     this.namedListService.deleteList(listId).subscribe(result => {
       console.log(result)
@@ -39,12 +40,10 @@ export class StateService {
     () => {
     });
       this.lists = this.lists.filter((t) => t.id != listId);
-      this.lists$.next(this.lists);
-    
+      this.lists$.next(this.lists);    
   }
 
   public add(point: Point) {
-
     if (!this.points.find(a => a.xCoord === point.xCoord && a.yCoord === point.yCoord) && this.points.length <=10000) {
       this.points.push(point);
       this.points$.next(this.points);
@@ -55,6 +54,7 @@ export class StateService {
     this.points = this.points.filter((t) => t.xCoord != xCoord || t.yCoord != yCoord);
     this.points$.next(this.points);
   }
+
   public clearAll() {
     this.points.splice(0, this.points.length)
     this.points$.next(this.points);

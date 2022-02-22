@@ -30,13 +30,15 @@ namespace Squares_server.Services
         }
         public async Task<List<ViewPointModel>> GetPointsByListAsync(int listId)
         {
+            // Could this be done simplier?
             List<NamedListPoint> namedPoints = await _context.NamedListPoints
                 .Where(p => p.NamedListId == listId).Include(p => p.PointModel)
                 .ToListAsync();
+
             List<PointModel> allPoints = new List<PointModel>();
             foreach (var point in namedPoints)
             {
-                PointModel pointModel = await _context.Points.Where(p => p.Id == point.PointModelId).FirstOrDefaultAsync();
+                PointModel pointModel = await _context.Points.FirstOrDefaultAsync(p => p.Id == point.PointModelId);
                 allPoints.Add(pointModel);
             }
             List<ViewPointModel> viewPoints = _mapper.Map<List<ViewPointModel>>(allPoints);
@@ -59,45 +61,19 @@ namespace Squares_server.Services
                     };
                     _context.Points.Add(pointNew);
                     await _context.SaveChangesAsync();
-                    pointAdd = pointNew;
+                    pointAdd = pointNew; 
                 }
                 _context.NamedListPoints.Add(new NamedListPoint
                 {
-                    PointModelId = pointAdd.Id,
+                    PointModelId = pointAdd.Id, // Maybe this can be replaced
+                    //PointModel = new PointModel
+                    //{
+
+                    //}
                     NamedListId = listId
                 });
             }
             await _context.SaveChangesAsync();
         }
-
-        //public async Task<ViewPointModel> GetPointAsync(int id)
-        //{
-        //    PointModel point = await _context.Points.Where(i => i.Id == id).FirstOrDefaultAsync();
-        //    if (point == null)
-        //    {
-        //        throw new ArgumentException($"Point {point.xCoord}.{point.yCoord} not found");
-        //    }
-        //    ViewPointModel viewPoint = _mapper.Map<ViewPointModel>(point);
-        //    return viewPoint;
-        //}
-
-        //public async Task<int> CreatePointAsync(CreatePointModel createPointModel)
-        //{
-        //    PointModel point = _mapper.Map<PointModel>(createPointModel);            
-        //    _context.Points.Add(point);
-        //    await _context.SaveChangesAsync();
-        //    return point.Id;
-        //}
-
-        //public async Task DeletePointAsync(int id)
-        //{
-        //    var point = await _context.Points.Where(i => i.Id == id).FirstOrDefaultAsync();
-        //    if (point == null)
-        //    {
-        //        throw new ArgumentException($"Point id {id} not found");
-        //    }
-        //    _context.Points.Remove(point);
-        //    await _context.SaveChangesAsync();
-        //}
     }
 }
