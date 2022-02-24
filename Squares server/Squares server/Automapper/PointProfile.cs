@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using Squares_server.Dtos;
 using Squares_server.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Squares_server.Automapper
 {
@@ -13,8 +8,8 @@ namespace Squares_server.Automapper
     {
         public PointProfile()
         {
-            CreateMap<PointModel, CreatePointModel>().ReverseMap();
-            CreateMap<PointModel, ViewPointModel>();
+            CreateMap<PointModel, PointModelDto>().ReverseMap();
+            CreateMap<PointModel, PointModelDto>();
             CreateMap<NamedList, CreateNamedList>().ReverseMap();
             CreateMap<NamedList, ViewNamedList>();
         }

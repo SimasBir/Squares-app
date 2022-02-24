@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Squares_server.Data;
 using Squares_server.Dtos;
 using Squares_server.Models;
+using Squares_server.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +42,6 @@ namespace Squares_server.Services
 
         public async Task<int> CreateNamedListAsync(CreateNamedList createNamedLists)
         {
-            // Shorten linq
             var checkName = await _context.NamedLists.FirstOrDefaultAsync(i => i.Name == createNamedLists.Name);
             NamedList namedList = _mapper.Map<NamedList>(createNamedLists);
             // Optional maybe introduce repositories

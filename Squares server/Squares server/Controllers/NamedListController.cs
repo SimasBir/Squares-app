@@ -3,8 +3,7 @@ using Squares_server.Dtos;
 using Squares_server.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Squares_server.Controllers
@@ -28,7 +27,7 @@ namespace Squares_server.Controllers
             return Ok(namedLists);
         }
 
-        //Pagal RESTFULL "GetPointsByList(int id)" tinkamiau cia:
+        //Better RESTFULL "GetPointsByList(int id)" in here:
         [HttpGet("{id}/point")]
         public async Task<ActionResult> GetPointsByList([FromRoute] int id)
         {
@@ -55,6 +54,10 @@ namespace Squares_server.Controllers
             {
                 return BadRequest(ex.Message);
             }
+            catch (ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
@@ -72,14 +75,18 @@ namespace Squares_server.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateNamedList(int id, List<CreatePointModel> pointList)
+        public async Task<IActionResult> UpdateNamedList(int id, List<PointModelDto> pointList)
         {
             try
             {
                 await _pointService.CreatePointListAsync(id, pointList);
                 return Created("NamedList has been updated. Id: ", id);
-            }
+            }            
             catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ValidationException ex)
             {
                 return BadRequest(ex.Message);
             }

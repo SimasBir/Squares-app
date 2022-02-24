@@ -38,11 +38,12 @@ export class NamedListComponent implements OnInit {
     this.showlist = true;
   }
   public new(){
+    this.stateService.clearAll();
     this.showlist = true;
   }
 
   public import(){
-    alert("Neveikia, sorry")
+    alert("Vis dar neveikia, sorry")
   //   this.http.get('app/home/1.txt').subscribe(data => {
   //     console.log('data', data.text());
   // })

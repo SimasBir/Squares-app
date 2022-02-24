@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squares server", "Squares server\Squares server.csproj", "{86FAED99-3074-4C71-9CB5-A7676BEC129F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Squares server", "Squares server\Squares server.csproj", "{86FAED99-3074-4C71-9CB5-A7676BEC129F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{7C8E2E37-4424-4C46-B950-1E28201B127D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{86FAED99-3074-4C71-9CB5-A7676BEC129F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86FAED99-3074-4C71-9CB5-A7676BEC129F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86FAED99-3074-4C71-9CB5-A7676BEC129F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C8E2E37-4424-4C46-B950-1E28201B127D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C8E2E37-4424-4C46-B950-1E28201B127D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C8E2E37-4424-4C46-B950-1E28201B127D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C8E2E37-4424-4C46-B950-1E28201B127D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

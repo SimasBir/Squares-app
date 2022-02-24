@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Squares_server.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Squares_server.Data
 {
@@ -21,7 +16,6 @@ namespace Squares_server.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<NamedListPoint>().HasKey(bc => new { bc.NamedListId, bc.PointModelId });
-            //modelBuilder.Entity<PointModel>().HasKey(bc => new { bc.xCoord, bc.yCoord});
         }
     }
 }

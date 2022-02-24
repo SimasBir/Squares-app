@@ -28,6 +28,6 @@ export class NamedListService {
   }
 
   public deleteList(Id: number): Observable<any> {
-    return this.httpClient.delete<any>(`https://localhost:44368/namedList/${Id}`);
+    return this.httpClient.delete(`https://localhost:44368/namedList/${Id}`, {responseType: 'text'});
   }
 }
